@@ -3,10 +3,12 @@ package ru.spbu.lenakosteva.domain.model;
 import java.util.Objects;
 
 public class FlashCard {
+
+    private final Long id;
     private final String question;
     private final String expectedAnswer;
 
-    public FlashCard(String question, String expectedAnswer) {
+    public FlashCard(Long id, String question, String expectedAnswer) {
         if (Objects.isNull(question) || question.isEmpty()) {
             throw new IllegalArgumentException("Question is null or empty");
         }
@@ -15,6 +17,11 @@ public class FlashCard {
             throw new IllegalArgumentException("Expected answer is null or empty");
         }
 
+        if (Objects.isNull(id)) {
+            throw new IllegalArgumentException("Id is null");
+        }
+
+        this.id = id;
         this.question = question;
         this.expectedAnswer = expectedAnswer;
     }
@@ -29,5 +36,18 @@ public class FlashCard {
         }
 
         return answer.equals(expectedAnswer);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id='" + id + '\'' +
+                ", question='" + question + '\'' +
+                ", answer='" + expectedAnswer + '\'' +
+                '}';
     }
 }

@@ -1,18 +1,19 @@
 package ru.spbu.lenakosteva.domain.model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FlashCardTest {
+    private static final Long ID = 1L;
+
     @Test
     @DisplayName("checkAnswer возвращает true при правильном ответе")
     void when_AnswerIsOk_then_checkAnswer_isTrue() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
-        FlashCard card = new FlashCard(question, expectedAnswer);
+        FlashCard card = new FlashCard(ID, question, expectedAnswer);
 
         boolean result = card.checkAnswer(expectedAnswer);
 
@@ -25,7 +26,7 @@ class FlashCardTest {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
         String actualAnswer = "Would you like do?";
-        FlashCard card = new FlashCard(question, expectedAnswer);
+        FlashCard card = new FlashCard(ID, question, expectedAnswer);
 
         boolean result = card.checkAnswer(actualAnswer);
 
@@ -38,9 +39,9 @@ class FlashCardTest {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
         String actualAnswer = null;
-        FlashCard card = new FlashCard(question, expectedAnswer);
+        FlashCard card = new FlashCard(ID, question, expectedAnswer);
 
-        Assertions.assertThrowsExactly(IllegalArgumentException.class, () ->  card.checkAnswer(actualAnswer));
+        assertThrowsExactly(IllegalArgumentException.class, () ->  card.checkAnswer(actualAnswer));
     }
 
     @Test
@@ -48,6 +49,6 @@ class FlashCardTest {
     void when_QuestionAndExpectedAnswerAreNull_then_NewFlashCard_ThrowsException() {
         String question = null;
         String expectedAnswer = null;
-        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new FlashCard(question, expectedAnswer));
+        assertThrowsExactly(IllegalArgumentException.class, () -> new FlashCard(ID, question, expectedAnswer));
     }
 }
