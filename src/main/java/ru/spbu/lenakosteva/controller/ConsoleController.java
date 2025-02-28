@@ -1,6 +1,5 @@
 package ru.spbu.lenakosteva.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.spbu.lenakosteva.domain.model.FlashCard;
 import ru.spbu.lenakosteva.domain.service.FlashCardService;
