@@ -1,5 +1,6 @@
 package ru.spbu.lenakosteva.domain.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,25 +34,20 @@ class FlashCardTest {
 
     @Test
     @DisplayName("в checkAnswer передан null")
-    void when_AnswerIsNull_then_checkAnswer_isFalse() {
+    void when_AnswerIsNull_then_checkAnswer_ThrowsException() {
         String question = "Вежливо попросить что то сделать на английском";
         String expectedAnswer = "Would You like to do something?";
         String actualAnswer = null;
         FlashCard card = new FlashCard(question, expectedAnswer);
 
-        assertThrows(NullPointerException.class, () -> card.checkAnswer(actualAnswer));
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () ->  card.checkAnswer(actualAnswer));
     }
 
     @Test
     @DisplayName("в конструктор FlashCard переданы null")
-    void when_QuestionAndExpectedAnswerAreNull_then_checkAnswer_() {
+    void when_QuestionAndExpectedAnswerAreNull_then_NewFlashCard_ThrowsException() {
         String question = null;
         String expectedAnswer = null;
-        String actualAnswer = "I know Java very well";
-        FlashCard card = new FlashCard(question, expectedAnswer);
-
-        boolean result = card.checkAnswer(actualAnswer);
-
-        assertFalse(result);
+        Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> new FlashCard(question, expectedAnswer));
     }
 }
