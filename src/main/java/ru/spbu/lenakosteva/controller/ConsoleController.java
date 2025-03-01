@@ -10,10 +10,10 @@ import java.util.Scanner;
 @Component
 public class ConsoleController {
     private static final String MENU = """
-          Введите [1], чтобы показать все задачи
-          Введите [2], чтобы добавить задачу
-          Введите [3], чтобы удалить задачу
-          Введите [4], чтобы найти задачу
+          Введите [1], чтобы показать все карточки
+          Введите [2], чтобы добавить карточку
+          Введите [3], чтобы удалить карточку
+          Введите [4], чтобы найти карточку
           Введите [5], чтобы выйти
           """;
 
@@ -76,7 +76,7 @@ public class ConsoleController {
         Optional<FlashCard> card = service.getById(id);
 
         if (card.isPresent()) {
-            System.out.println(card);
+            System.out.println(card.get());
         } else {
             System.out.println("Карточка с таким id не найдена :(");
         }

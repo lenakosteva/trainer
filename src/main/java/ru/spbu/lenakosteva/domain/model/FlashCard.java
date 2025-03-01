@@ -42,6 +42,10 @@ public class FlashCard {
         return id;
     }
 
+    public String getExpectedAnswer() {
+        return expectedAnswer;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
