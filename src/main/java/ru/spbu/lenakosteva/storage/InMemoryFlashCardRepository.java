@@ -1,6 +1,5 @@
 package ru.spbu.lenakosteva.storage;
 
-import org.springframework.stereotype.Repository;
 import ru.spbu.lenakosteva.domain.model.FlashCard;
 import ru.spbu.lenakosteva.domain.repo.FlashCardRepository;
 
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Repository
 public class InMemoryFlashCardRepository implements FlashCardRepository {
     private final Map<Long, FlashCard> storage;
 
