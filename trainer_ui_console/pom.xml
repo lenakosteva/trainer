@@ -45,7 +45,7 @@
                     <archive>
                         <manifest>
                             <mainClass>
-                                ru.akhitev.console.Application
+                                ru.spbu.lenakosteva.console.Application
                             </mainClass>
                         </manifest>
                     </archive>
