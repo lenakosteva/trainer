@@ -54,7 +54,8 @@ public class QuestionJdbcTemplateDao implements QuestionRepository {
     public Optional<OpenQuestionCard> getById(Long id) {
         List<OpenQuestionCard> questions = jdbcTemplate.query(
                 FIND_BY_ID_QUERY,
-                (ResultSet rs, int rowNum) -> constructQuestion(rs)
+                (ResultSet rs, int rowNum) -> constructQuestion(rs),
+                id
         );
 
         return questions.isEmpty()
@@ -74,13 +75,13 @@ public class QuestionJdbcTemplateDao implements QuestionRepository {
     public void update(OpenQuestionCard openQuestionCard) {
         jdbcTemplate.update(
                 UPDATE_QUESTION_QUERY,
-                openQuestionCard.getId(), openQuestionCard.getQuestion(), openQuestionCard.getExpectedAnswer()
+                openQuestionCard.getQuestion(), openQuestionCard.getExpectedAnswer(), openQuestionCard.getId()
         );
     }
 
     @Override
     public void remove(Long id) {
-        jdbcTemplate.update(DELETE_QUESTION_QUERY);
+        jdbcTemplate.update(DELETE_QUESTION_QUERY, id);
     }
 
     private OpenQuestionCard constructQuestion(ResultSet resultSet) throws SQLException {
