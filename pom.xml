@@ -7,6 +7,12 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.3</version>
+  </parent>
+
   <name>trainer</name>
   <modules>
       <module>trainer_domain</module>
@@ -15,6 +21,7 @@
       <module>trainer_db_spring_jdbc</module>
       <module>trainer_ui_swing</module>
       <module>trainer_db_spring_hibernate</module>
+    <module>trainer_api</module>
   </modules>
 
   <properties>
@@ -43,6 +50,7 @@
     <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
     <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>
     <log4j.version>2.24.3</log4j.version>
+    <springdoc-openapi-starter-webmvc-ui.version>2.8.5</springdoc-openapi-starter-webmvc-ui.version>
   </properties>
 
   <dependencyManagement>
@@ -64,11 +72,6 @@
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>${spring-context.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
         <artifactId>spring-jdbc</artifactId>
         <version>${spring-context.version}</version>
       </dependency>
@@ -76,6 +79,11 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-orm</artifactId>
         <version>${spring-context.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
       </dependency>
       <dependency>
         <groupId>com.h2database</groupId>
@@ -116,12 +124,6 @@
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-core</artifactId>
         <version>${log4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
