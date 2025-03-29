@@ -14,12 +14,15 @@
       <module>trainer_ui_console</module>
       <module>trainer_db_spring_jdbc</module>
       <module>trainer_ui_swing</module>
+      <module>trainer_db_spring_hibernate</module>
   </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Проектные настройки -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <java.version>17</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
@@ -31,9 +34,15 @@
 
     <!-- Версии внешних библиотек -->
     <junit.version>5.12.0-RC1</junit.version>
-    <spring-context.version>6.2.3</spring-context.version>
+    <spring-context.version>7.0.0-M2</spring-context.version>
     <h2.version>2.3.232</h2.version>
     <commons-dbcp2.version>2.13.0</commons-dbcp2.version>
+    <hibernate.version>6.6.10.Final</hibernate.version>
+    <mapstruct.version>1.6.3</mapstruct.version>
+    <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+    <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
+    <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>
+    <log4j.version>2.24.3</log4j.version>
   </properties>
 
   <dependencyManagement>
@@ -64,6 +73,11 @@
         <version>${spring-context.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${spring-context.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>${h2.version}</version>
@@ -74,6 +88,36 @@
         <version>${commons-dbcp2.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${hibernate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.persistence</groupId>
+        <artifactId>jakarta.persistence-api</artifactId>
+        <version>${jakarta.persistence-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.transaction</groupId>
+        <artifactId>jakarta.transaction-api</artifactId>
+        <version>${jakarta.transaction-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${mapstruct.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
         <version>${junit.version}</version>
@@ -81,6 +125,8 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+
 
   <build>
     <pluginManagement>
@@ -111,6 +157,20 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+          <configuration>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+              </path>
+            </annotationProcessorPaths>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
