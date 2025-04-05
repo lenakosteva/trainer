@@ -56,13 +56,14 @@ public class QuestionHibernateDao implements QuestionRepository {
     @Override
     public void add(OpenQuestionCard openQuestionCard) {
         OpenQuestionCardEntity entity = mapper.mapToEntity(openQuestionCard);
+        entity.setId(null);
         entityManager.persist(entity);
     }
 
     @Override
     public void update(OpenQuestionCard openQuestionCard) {
         OpenQuestionCardEntity entity = mapper.mapToEntity(openQuestionCard);
-        entityManager.persist(entity);
+        entityManager.merge(entity);
     }
 
     @Override
