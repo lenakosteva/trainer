@@ -9,7 +9,7 @@ import ru.spbu.lenakosteva.spring.hibernate.config.DbConfig;
 @Configuration
 @Import(DbConfig.class)
 @ComponentScan(basePackages = "ru.spbu.lenakosteva")
-@PropertySource("jdbc.properties")
+@PropertySource("classpath:jdbc.properties")
 public class SpringConfig {
 
 }
