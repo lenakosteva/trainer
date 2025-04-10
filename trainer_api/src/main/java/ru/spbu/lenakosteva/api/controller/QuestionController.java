@@ -49,6 +49,11 @@ public class QuestionController {
         questionService.save(mapper.toModel(dto));
     }
 
+    @PutMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
+    public void update(@RequestBody OpenQuestionCardDto dto) {
+        questionService.save(mapper.toModel(dto));
+    }
+
     @Operation(summary = "Удаление вопроса",
             description = "Находит вопрос по ID и удаляет, если он найден"
     )
