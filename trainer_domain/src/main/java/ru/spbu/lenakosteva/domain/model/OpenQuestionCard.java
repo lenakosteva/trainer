@@ -54,4 +54,17 @@ public class OpenQuestionCard {
                 ", answer='" + expectedAnswer + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OpenQuestionCard that = (OpenQuestionCard) o;
+        return Objects.equals(id, that.id) && Objects.equals(question, that.question) && Objects.equals(expectedAnswer, that.expectedAnswer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, question, expectedAnswer);
+    }
 }
